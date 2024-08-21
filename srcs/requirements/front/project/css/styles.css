@@ -1,0 +1,217 @@
+.bar {
+    position: absolute;
+    width: 10px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    z-index: 9999;
+}
+
+#square {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.accordion-button {
+    background-color: rgb(255, 255, 255); /* fond blanc */
+    color: black; /* police noire */
+    border: 1px solid black; /* encadrement fin noir */
+    border-radius: 5px; /* coins arrondis */
+    height: 30px; /* hauteur des boutons */
+    font-size: 20px; /* taille de la police */
+    width: 100%;
+}
+
+.accordion {
+    width: 100%; /* largeur de l'accordéon */
+}
+
+
+.accordion-button:hover {
+    background-color: rgb(255, 255, 255); /* fond blanc au survol */
+    width: 100%;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: rgb(255, 255, 255); /* fond blanc quand le bouton n'est pas réduit */
+    border: 1px solid black; /* encadrement fin noir quand le bouton n'est pas réduit */
+    width: 100%;
+}
+
+.accordion-flush .accordion-button {
+    background-color: rgb(255, 255, 255); /* fond blanc pour les boutons dans un accordéon flush */
+    color: black; /* police noire pour les boutons dans un accordéon flush */
+    border: 1px solid black; /* encadrement fin noir pour les boutons dans un accordéon flush */
+    width: 100%;
+}
+
+#defaultContent {
+    display: none;
+}
+
+.bg-success-pale {
+    background-color: #d4edda; /* Vert pâle */
+}
+
+.bg-danger-pale {
+    background-color: #f8d7da; /* Rouge pâle */
+}
+
+/*********************************************************************/
+
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;700;900&display=swap");
+
+body {
+    
+    overflow :hidden;
+    height: 100vh;
+    font-family: "Exo 2", sans-serif;
+    background: rgb(63, 161, 251);
+    background: linear-gradient(
+        142deg,
+        rgba(63, 161, 251, 1) 0%,
+        rgba(252, 70, 168, 1) 100%
+  );
+}
+
+.navbar {
+  background: rgb(63, 161, 251);
+  background: linear-gradient(
+      -142deg,
+      rgba(63, 161, 251, 1) 0%,
+      rgba(252, 70, 168, 1) 100%
+  )
+}
+
+.header {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 4rem);
+}
+
+.title-wrapper {
+    margin: 0 auto; /* Réduit l'espace autour du wrapper de titre */
+}
+  
+.sweet-title, .top-title, .bottom-title {
+    margin: 0; /* Supprime les marges par défaut pour réduire l'espace */
+}
+  
+.button_group_start {
+    position: relative;
+    top: -300px; /* Ajustez cette valeur pour remonter les boutons */
+}
+
+.title-wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    transform: skew(0, -10deg) translateY(-150px); /* Ajustez -50px selon le besoin */
+  }
+
+.top-title {
+  order: 1;
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  margin-bottom: 1rem;
+  padding-right: 2rem;
+}
+
+.bottom-title {
+  order: 3;
+  text-align: center;
+  display: block;
+  color: #fff;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  margin-top: 2rem;
+  padding-left: 2rem;
+}
+
+.sweet-title {
+  order: 2;
+  color: #fde9ff;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(3rem, 10vw, 6rem);
+  line-height: 0.75em;
+  text-align: center;
+  text-shadow: 3px 1px 1px #4af7ff, 2px 2px 1px #165bfb, 4px 2px 1px #4af7ff,
+    3px 3px 1px #165bfb, 5px 3px 1px #4af7ff, 4px 4px 1px #165bfb,
+    6px 4px 1px #4af7ff, 5px 5px 1px #165bfb, 7px 5px 1px #4af7ff,
+    6px 6px 1px #165bfb, 8px 6px 1px #4af7ff, 7px 7px 1px #165bfb,
+    9px 7px 1px #4af7ff;
+
+  span {
+    display: block;
+    position: relative;
+
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+      text-shadow: 2px 2px 1px #e94aa1, -1px -1px 1px #c736f9,
+        -2px 2px 1px #e94aa1, 1px -1px 1px #f736f9;
+      z-index: 1;
+    }
+
+    &:nth-child(1) {
+      padding-right: 2.25rem;
+    }
+
+    &:nth-child(2) {
+      padding-left: 2.25rem;
+    }
+  }
+}
+
+.sweet-title-straight {
+  order: 2;
+  color: #fde9ff;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(1.2rem, 2vw, 1.5rem); /* Taille de police ajustée pour des titres de page */
+  line-height: 0.75em;
+  text-align: center;
+  /* Ombres ajustées pour un effet moins prononcé tout en conservant la variété des couleurs */
+  text-shadow: 1px 1px 1px #4af7ff, 0.5px 0.5px 1px #165bfb, -0.5px -0.5px 1px #e94aa1, -1px 1px 1px #c736f9;
+
+  span {
+    display: block;
+    position: relative;
+
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+      /* Ombres simplifiées pour le contenu avant, conservant la variété des couleurs */
+      text-shadow: 0.5px 0.5px 1px #e94aa1, -0.5px -0.5px 1px #c736f9;
+      z-index: 1;
+    }
+
+    &:nth-child(1) {
+      padding-right: 1.5rem; /* Ajustement du padding pour une apparence plus compacte */
+    }
+
+    &:nth-child(2) {
+      padding-left: 1.5rem; /* Ajustement du padding pour une apparence plus compacte */
+    }
+  }
+}
+
+.disclaimer {
+  width: 100%;
+  height: 2rem;
+  text-align: center;
+  color: #fff;
+
+  a {
+    color: #fff;
+  }
+}

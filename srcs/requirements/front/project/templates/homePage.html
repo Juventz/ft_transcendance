@@ -1,0 +1,65 @@
+<div>
+    <div class="container" style="margin-top: 100px;">
+        <div class="row-mt-5 justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <div class="col sweet-title-straight mt-5">
+                <span>Game rules</span>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5 mb-5">
+        <div class="col-6">
+            <div class="container d-flex">
+                <div class="accordion accordion" id="accordionRules">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Game setup
+                        </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionRules">
+                        <div class="accordion-body">Pong is a two-player game. Each player controls a paddle on the screen by using the "Up" and "Down" arrow keys of the keyboard. The player's goal is to use their paddle to strike the ball back and forth.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Playing the game
+                        </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionRules">
+                        <div class="accordion-body">The ball begins in the middle of the screen, and once the game starts, the ball will move in a random direction. If a player hits the ball, it bounces back towards the other player. Points are scored when one player fails to return the ball to the other player.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Winning the Game
+                        </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionRules">
+                        <div class="accordion-body">The game continues until one player reaches a score of 11 points. The player who first reaches 11 points is declared the winner.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- video -->
+        <div class="col-6">
+            <div class="container d-flex align-items-center">
+                <div class="video-container mx-auto">
+                    <video class="w-100 ml-5" autoplay loop muted>
+                        <source src="../static/pong_video.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- buttons -->
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="button">
+                <button class="btn btn-dark btn-lg mt-5" style="background-color: black" onclick="navigate('gamePage')">PLAY</button>
+            </div>
+        </div>
+    </div>
+</div>

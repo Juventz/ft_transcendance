@@ -1,0 +1,8 @@
+djangorestframework==3.15.1
+djangorestframework-simplejwt==5.3.1
+psycopg[binary,c]==3.1.8
+psycopg2==2.9.9
+psycopg2-binary==2.9.9
+Pillow
+requests==2.32.3
+django-prometheus

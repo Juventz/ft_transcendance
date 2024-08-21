@@ -1,0 +1,114 @@
+<div class="container" style="margin-top: 100px;">
+    <div class="row-mt-5 justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+        <div class="col sweet-title-straight mt-1 mb-3">
+            <span>Edit your profile</span>
+        </div>
+        <span>Please note that changes will be registered ONLY on the fields you will fill. Other values will remain unchanged</span>
+    </div>
+    <div class="row">
+        <div class="col-6 p-5">
+            <div class="container">
+                <div class="row">
+                    <form>
+                        <!-- Changes applied for email -->
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="editProfilePageEmail">New email address</label>
+                                    <input type="email" class="form-control" id="editProfilePageEmail" aria-describedby="emailHelp" placeholder="Email">
+                                    <div>
+                                        <small id="emailHelp" style="color: #303030">We'll never share your email with anyone else.</small>
+                                        <small id="editProfilePageEmailError" class="form-text text-danger"></small>
+                                        <small id="editProfilePageEmailSuccess" class="form-text text-success"></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-secondary btn-sm" style="background-color: black; width: 100%;" onclick="handleEditEmail()">Submit</button>
+                            </div>
+                        </div>
+                        <!-- Changes applied for username and password -->
+                         <div class="row d-flex align-items-center">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="editProfilePageUsername">New username</label>
+                                    <input type="username" class="form-control" id="editProfilePageUsername" aria-describedby="usernameHelp" placeholder="Username">
+                                    <small id="usernameHelp" style="color: #303030">This is your identity on our website. Please select something decent.</small>
+                                    <small id="editProfilePageUsernameError" class="form-text text-danger"></small>
+                                    <small id="editProfilePageUsernameSuccess" class="form-text text-success"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-secondary btn-sm" style="background-color: black; width: 100%;" onclick="handleEditUsername()">Submit</button>
+                            </div>
+                        </div>
+                        <!-- Changes applied for password and confirmation-->
+                        <div class="row d-flex align-items-center mt-5">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="editProfilePagePassword">New password</label>
+                                    <input type="password" class="form-control" id="editProfilePagePassword" aria-describedby="passwordHelp" placeholder="Password">
+                                    <small id="passwordHelp" style="color: #303030">Your password must contain at least 1 lowercase, 1 uppercase, 1 digit and 1 special character..</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row d-flex align-items-center">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="editProfilePageConfirmPassword">Confirm new password</label>
+                                    <input type="password_confirm" class="form-control" id="editProfilePageConfirmPassword" aria-describedby="passwordConfirmHelp" placeholder="Password">
+                                    <small id="passwordConfirmHelp" style="color: #303030">The confirmation must match the above password</small>
+                                    <small id="editProfilePagePasswordError" class="form-text text-danger"></small>
+                                    <small id="editProfilePagePasswordSuccess" class="form-text text-success"></small>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-secondary btn-sm" style="background-color: black; width: 100%;" onclick="handleEditPassword()">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 p-5">
+            <div class="container m-5">
+                <div class="row justify-content-center">
+                    <div class="col-6">
+                        <div class="row justify-content-center">
+<<<<<<<< HEAD:srcs/requirements/front/project/templates/editProfilePage.html
+                            <img id="editProfilePageAvatar" src="../static/duck.png" class="img-fluid mb-5" style="max-width: 100%; height: auto;">
+========
+                            <img id="avatarImage" src="{% static 'duck.png'%}" class="img-fluid mb-5" style="max-width: 100%; height: auto;">
+>>>>>>>> b093a01f3220936c65b127c6705226884f7d401f:srcs/requirements/frontend/Front_service/front_app/templates/edit_profile.html
+                        </div>
+                            <!-- changeavatar()-->
+                            <div class="dropdown">
+                                <div class="row justify-content-center">
+                                    <button class="btn btn-secondary btn-lg dropdown-toggle me-5" style="background-color : black;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Select an avatar
+                                    </button>
+                                    <div class="d-flex justify-content-center align-items-center mt-5">
+                                        <button type="button" class="btn btn-secondary btn-md" style="background-color: black" onclick="handleEditAvatar()">Submit</button>
+                                    </div>
+                                    <small id="passwordHelp" style="color: #303030">Supported formats: .jpeg / .png / .jpg</small>
+                                    <small id="editProfilePageAvatarError" class="form-text text-danger"></small>
+                                    <small id="editProfilePageAvatarSuccess" class="form-text text-success"></small>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <input type="file" id="avatarUpload" style="display: none;" onchange="uploadAvatar('editProfilePageAvatar', event)">
+                                        <button class="dropdown-item btn-sm" type="button" onclick="document.getElementById('avatarUpload').click();">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../static/import_image.png" class="dropdown-item-image" style="max-width: 20%; height: 20%;">
+                                                <span class="ms-2 ml-2">Pick my own</span>
+                                            </div>
+                                        </button>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

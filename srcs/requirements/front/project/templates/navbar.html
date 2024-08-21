@@ -1,0 +1,29 @@
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="">
+            <img class ="img-thumbnail mr-2 rounded-circle" id="navbarAvatar" src="../static/duck.png" width="50" height="50" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto"> <!-- Add ml-auto class here -->
+                <li class="nav-item active" style="margin-right: 10px;">
+                    <button class="nav-link" style="background-color: transparent; border: 2px solid white; border-radius: 5px; color: white;" onclick="navigate('homePage')">Home <span class="sr-only">(current)</span></button>
+                </li>
+                <li class="nav-item active" style="margin-right: 10px;">
+                    <button class="nav-link" style="background-color: transparent; border: 2px solid white; border-radius: 5px; color: white;" onclick="navigate('friendsPage')">Friends <span class="sr-only">(current)</span></button>
+                </li>
+                <li class="nav-item active" style="margin-right: 10px;">
+                    <button class="nav-link" style="background-color: transparent; border: 2px solid white; border-radius: 5px; color: white;" onclick="navigate('profilePage')">Profile <span class="sr-only">(current)</span></button>
+                </li>
+                <li class="nav-item active" style="margin-right: 10px;">
+                    <button class="nav-link" style="background-color: transparent; border: 2px solid white; border-radius: 5px; color: white;" onclick="navigate('scoreBoardPage')">Scoreboard <span class="sr-only">(current)</span></button>
+                </li>
+                <li class="nav-item active">
+                    <button class="nav-link" style="background-color: transparent; border: 2px solid white; border-radius: 5px; color: white;" onclick="handleLogout()">Log out <span class="sr-only">(current)</span></button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

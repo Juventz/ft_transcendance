@@ -1,0 +1,38 @@
+<div class="container" style="margin-top: 100px;">
+    <div class="row-mt-5 justify-content-center col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+        <div class="col sweet-title-straight mt-5">
+            <span>My friends</span>
+        </div>
+    </div>
+    <div class="row mt-5 justify-content-center">
+        <!-- Colonne de gauche pour la liste d'amis -->
+        <div class="container col-5">
+            <div class="col sweet-title-straight mt-5 mb-5">
+                <span>My friends</span>
+            </div>
+            <div class="list-group mb-5 justify-content-center" id="friendsList"></div>
+        </div>
+        <!-- Colonne vide pour l'espace -->
+        <div class="col-2"></div>
+        <!-- Colonne de droite pour les invitations et ajouter des amis -->
+        <div class="container col-5">
+            <div class="col sweet-title-straight mt-5 mb-5">
+                <span>Invitations</span>
+            </div>
+            <div class="list-group mb-5 justify-content-center" id="friendRequestsList"></div>
+            <div class="col sweet-title-straight mt-5 mb-5">
+                <span>Add more friends</span>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="friendsPageUsername" placeholder="Enter friend's username here">
+                </div>
+                <small id="friendsPageUsernameError" class="form-text text-danger"></small>
+                <small id="friendsPageUsernameSuccess" class="form-text text-success"></small>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary btn-sm align-items-center " style="background-color: black; width: 30%;" onclick="handleSendFriendRequest()">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

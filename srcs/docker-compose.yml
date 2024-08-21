@@ -1,0 +1,219 @@
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx/
+      args:
+        - KIBANA_USER=${KIBANA_USER}
+        - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+    ports:
+      - 4243:443
+    # volumes:
+    #   - logs:/var/log/nginx
+    # logging:
+    #   driver: gelf
+    #   options:
+    #     gelf-address: "udp://logstash:514"
+    #     tag: "nginx"
+    depends_on:
+      - front
+      - game
+      - auth
+      - logstash
+    networks:
+      - network
+    restart: always
+
+  front:
+    container_name: front
+    build: ./requirements/front/
+    expose:
+      - 80
+    env_file:
+      - .env
+    networks:
+      - network
+
+  auth:
+    container_name: auth
+    build: ./requirements/auth/
+    env_file:
+      - .env
+    expose:
+      - 8001
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - img_data:/app/media/
+    networks:
+      - network
+    restart: always
+
+  game:
+    container_name: game
+    build: ./requirements/game/
+    env_file:
+      - .env
+    expose:
+      - 8002
+    networks:
+      - network
+    restart: always
+
+  postgres:
+    container_name: postgres
+    image: postgres:13.1
+    env_file:
+      - .env
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql/data
+      - ./requirements/postgres/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
+    expose:
+      - 5432
+    networks:
+      - network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_NAME} -d ${POSTGRES_USER_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# version 7.10.1 is the latest open source version of elasticsearch, logstash, and kibana.
+  elasticsearch:
+    container_name: elasticsearch
+    build: ./requirements/elasticsearch/
+    # image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+      - esbackup:/mnt/backups/my_fs_backup
+    environment:
+      - discovery.type=single-node
+    expose:
+      - 9200
+    networks:
+      - network
+
+  logstash:
+    user: root
+    container_name: logstash
+    build: ./requirements/logstash/
+    volumes:
+      - ./requirements/logstash/conf/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /var/lib/docker/containers:/docker/containers
+      - logs:/usr/share/logstash/logs
+    env_file:
+      - .env
+    expose:
+      - 5000
+      - "514/udp"
+      - "515/udp"
+    depends_on:
+      - elasticsearch
+    networks:
+      - network
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.10.1
+    environment:
+      - SERVER_BASEPATH=/kibana
+      - SERVER_REWRITEBASEPATH=false
+    expose:
+      - 5601
+    depends_on:
+      - elasticsearch
+      - cron
+    networks:
+      - network
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    volumes:
+      - ./requirements/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.route-prefix=/prometheus'
+      - '--web.external-url=http://localhost/prometheus'
+    expose:
+      - 9090    
+    networks:
+      - network
+
+  postgres_exporter:
+    container_name: postgres_exporter
+    image: wrouesnel/postgres_exporter
+    environment:
+      DATA_SOURCE_NAME: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+    expose:
+      - 9187
+    networks:
+      - network
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=http://localhost:3000/grafana
+      - GF_SERVER_SERVE_FROM_SUB_PATH=true
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+    volumes:
+      - grafana_data:/var/lib/grafana
+    expose:
+      - 3000
+    networks:
+      - network
+
+  cron:
+    container_name: cron
+    build: ./requirements/cron/
+    depends_on:
+      - elasticsearch
+    expose:
+      - 80
+    networks:
+      - network
+    
+
+networks:
+  network:
+    name: network
+
+volumes:
+  esdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/elasticsearch
+  esbackup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/backup
+  logs:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./logs
+  pgdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/postgresql
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/grafana
+  img_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/img
